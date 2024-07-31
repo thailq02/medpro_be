@@ -1,5 +1,5 @@
 # Stage 0
-FROM node:20-slim as base
+FROM node:20-slim AS base
 LABEL maintainer="YourName <yourname@domain.com>"
 
 WORKDIR /app
@@ -7,12 +7,12 @@ COPY package.json package-lock.json ./
 
 
 # Stage 1
-FROM base as deps
+FROM base AS deps
 RUN  --mount=type=cache,id=npm,target=/root/.npm npm install --production
 
 
 # Stage 2
-FROM base as builder
+FROM base AS builder
 RUN --mount=type=cache,id=npm,target=/root/.npm npm install
 COPY . .
 RUN npm run build
@@ -20,11 +20,11 @@ RUN npm run build
 
 # Stage 3
 FROM base AS runner
-ENV NODE_ENV production
-ENV HOST 0.0.0.0
-ENV PORT 4000
+ENV NODE_ENV=production
+ENV HOST=0.0.0.0
+ENV PORT=4000
 ARG APP_VERSION
-ENV APP_VERSION $APP_VERSION
+ENV APP_VERSION=$APP_VERSION
 #COPY --from=builder /app/.env ./
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/tsconfig.json ./
