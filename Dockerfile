@@ -8,12 +8,12 @@ COPY package.json package-lock.json ./
 
 # Stage 1
 FROM base as deps
-RUN  --mount=type=cache,id=npm, npm install --production
+RUN  --mount=type=cache,id=npm,target=/root/.npm npm install --production
 
 
 # Stage 2
 FROM base as builder
-RUN --mount=type=cache,id=npm, npm install
+RUN --mount=type=cache,id=npm,target=/root/.npm npm install
 COPY . .
 RUN npm run build
 
