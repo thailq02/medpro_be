@@ -1,6 +1,7 @@
 import {Server as ServerHttp} from 'http'
 import {ObjectId} from 'mongodb'
 import {Server} from 'socket.io'
+import {envConfig} from '~/constants/config'
 import {UserVerifyStatus} from '~/constants/enum'
 import HTTP_STATUS from '~/constants/httpStatus'
 import {USERS_MESSAGE} from '~/constants/messages'
@@ -21,7 +22,7 @@ interface IConversationBody {
 export const initSocket = (httpServer: ServerHttp) => {
   const io = new Server(httpServer, {
     // Cấp phép cho domain có thể kết nối tới server
-    cors: {origin: 'http://localhost:3000', credentials: true}
+    cors: {origin: envConfig.clientUrl, credentials: true}
   })
 
   const users: {
