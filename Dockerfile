@@ -25,7 +25,7 @@ ENV HOST 0.0.0.0
 ENV PORT 4000
 ARG APP_VERSION
 ENV APP_VERSION $APP_VERSION
-COPY --from=builder /app/.env ./
+#COPY --from=builder /app/.env ./
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/tsconfig.json ./
 COPY --from=deps /app/node_modules ./node_modules
