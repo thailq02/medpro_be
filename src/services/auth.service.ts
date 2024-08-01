@@ -167,7 +167,7 @@ class UsersService {
     await sendMail({
       to: payload.email,
       subject: 'Verify email',
-      htmlContent: `<a href="http://localhost:${envConfig.port}/verify-email?token=${email_verify_token}"> Verify Email nek</a>`
+      htmlContent: `<a href="${envConfig.clientUrl}/verify-email?token=${email_verify_token}"> Verify Email nek</a>`
     })
     return {
       access_token,
@@ -262,7 +262,7 @@ class UsersService {
       [{$set: {forgot_password_token, updated_at: '$$NOW'}}]
     )
     // Giả bộ gửi email kèm đường link đến email người dùng: https://example.com/reset-password?token=<forgot_password_token>
-    console.log('forgot_password_token', forgot_password_token)
+    // console.log('forgot_password_token', forgot_password_token)
     await sendMail({
       to: user.email,
       subject: 'Verify forgot password',
@@ -326,7 +326,7 @@ class UsersService {
       [{$set: {email_verify_token, updated_at: '$$NOW'}}]
     )
     // Giả bộ gửi email kèm đường link đến email người dùng: https://example.com/verify-email?token=<email_verify_token>
-    console.log('email_verify_token', email_verify_token)
+    // console.log('email_verify_token', email_verify_token)
     await sendMail({
       to: user.email,
       subject: 'Verify email',
