@@ -16,7 +16,7 @@ const port = envConfig.port
 const httpServer = createServer(app)
 
 const corsOptions: cors.CorsOptions = {
-  origin: ['https://lequangthai-medpro.io.vn', /\.lequangthai-medpro\.io.vn$/],
+  origin: ['https://lequangthai-medpro.io.vn', 'https://cms.lequangthai-medpro.io.vn'],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
   allowedHeaders: ['Content-Type', 'Authorization']
@@ -25,7 +25,7 @@ app.use(cors(corsOptions))
 
 const limiter = rateLimit({
   windowMs: 5 * 60 * 1000, // 5 minutes
-  max: 100, // limit each IP to 100 requests per windowMs
+  max: 150, // limit each IP to 100 requests per windowMs
   standardHeaders: true,
   legacyHeaders: false
 })
