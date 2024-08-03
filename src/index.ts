@@ -16,7 +16,7 @@ const port = envConfig.port
 const httpServer = createServer(app)
 
 const corsOptions: cors.CorsOptions = {
-  origin: ['https://lequangthai-medpro.io.vn', 'https://cms.lequangthai-medpro.io.vn'],
+  origin: [envConfig.clientUrl, envConfig.cmsUrl],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
   allowedHeaders: ['Content-Type', 'Authorization']

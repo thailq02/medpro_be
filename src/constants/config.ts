@@ -15,6 +15,7 @@ export const envConfig = {
   port: (process.env.PORT as string) || 10000,
   appUrl: process.env.APP_URL as string,
   clientUrl: process.env.CLIENT_URL as string,
+  cmsUrl: process.env.CMS_URL as string,
   passwordSecret: process.env.PASSWORD_SECRET as string,
 
   dbName: process.env.DB_NAME as string,
