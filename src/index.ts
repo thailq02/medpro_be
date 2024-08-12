@@ -1,6 +1,5 @@
 import cors from 'cors'
 import express from 'express'
-import rateLimit from 'express-rate-limit'
 import helmet from 'helmet'
 import {createServer} from 'http'
 import {initSocket} from '~/utils/socket'
@@ -23,13 +22,13 @@ const corsOptions: cors.CorsOptions = {
 }
 app.use(cors(corsOptions))
 
-const limiter = rateLimit({
-  windowMs: 5 * 60 * 1000, // 5 minutes
-  max: 150, // limit each IP to 100 requests per windowMs
-  standardHeaders: true,
-  legacyHeaders: false
-})
-app.use(limiter)
+// const limiter = rateLimit({
+//   windowMs: 5 * 60 * 1000, // 5 minutes
+//   max: 150, // limit each IP to 100 requests per windowMs
+//   standardHeaders: true,
+//   legacyHeaders: false
+// })
+// app.use(limiter)
 app.use(
   helmet({
     crossOriginResourcePolicy: {policy: 'cross-origin'}
